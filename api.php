@@ -31,16 +31,21 @@ try {
     $env['db_conn'] = $dbh;
     $env['reqs'] = $xml_reqs;
 
+    // Racine de l'API
+
     $app -> get('/', function() use ($app) {
         $app -> response() -> header('Content-Type', 'application/json');
         echo json_encode(array('message' => 'Bienvenue dans l\'api georef'));
     });
+
+    // Test : accès à l'application
 
     $app -> get('/test/accessApp', function() use ($app) {
         $app -> response() -> header('Content-Type', 'application/json');
         echo json_encode(array('message' => 'ok'));
     });
     
+    // Test : accès à la base de données
     $app -> get('/test/accessBdd', function() use ($app) {
         $env = $app->environment();    
         $dbh = $env['db_conn'];
